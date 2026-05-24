@@ -41,15 +41,15 @@ Daily Grove allows users to create personalised “groves”, organise lists and
 
 ### Homepage
 
-![Homepage](screenshots/homepage.png)
+![Homepage](screenshots/homepage.PNG)
 
 ### Tasks View
 
-![Tasks](screenshots/tasks.png)
+![Tasks](screenshots/tasks.PNG)
 
 ### Create Grove View
 
-![Create Grove](screenshots/create-user.png)
+![Create Grove](screenshots/create-user.PNG)
 
 ## Installation
 
