@@ -1,0 +1,203 @@
+<%- include("partials/header.ejs") %>
+<%- include("partials/sidebar.ejs") %>
+
+<main class="page-main tasks-page">
+
+  <section class="tasks-card">
+
+    <div class="tasks-header">
+  <div class="list-title-edit-row">
+    <h1 id="listTitle<%= list.id %>"><%= list.name %></h1>
+
+    <form
+      action="/lists/<%= list.id %>/edit"
+      method="POST"
+      class="edit-list-form"
+    >
+      <input
+        id="listInput<%= list.id %>"
+        type="text"
+        name="name"
+        value="<%= list.name %>"
+        class="edit-list-input"
+        hidden
+        required
+      >
+
+      <button
+        id="listDone<%= list.id %>"
+        class="task-icon"
+        type="submit"
+        hidden
+      >
+        ✓
+      </button>
+    </form>
+
+    <button
+      id="listEdit<%= list.id %>"
+      class="task-icon list-edit-btn"
+      type="button"
+      onclick='editListHandler("<%= list.id %>")'
+    >
+      ✎
+    </button>
+  </div>
+</div>
+
+    <div class="tasks-title-line"></div>
+
+    <section class="task-list">
+
+      <% tasks.forEach((task) => { %>
+
+        <div class="task-row <%= task.completed ? 'completed' : '' %>">
+
+          <div class="task-left">
+
+            <form
+              action="/tasks/<%= task.id %>/toggle"
+              method="POST"
+              class="complete-form"
+            >
+              <input
+                type="hidden"
+                name="listId"
+                value="<%= list.id %>"
+              >
+
+              <button
+                class="task-circle"
+                type="submit"
+              ></button>
+            </form>
+
+            <p
+              id="title<%= task.id %>"
+              class="task-title"
+            >
+              <%= task.title %>
+            </p>
+
+            <form
+              action="/tasks/<%= task.id %>/edit"
+              method="POST"
+              class="edit-task-form"
+            >
+
+              <input
+                type="hidden"
+                name="listId"
+                value="<%= list.id %>"
+              >
+
+              <input
+                id="input<%= task.id %>"
+                type="text"
+                name="title"
+                value="<%= task.title %>"
+                class="edit-task-input"
+                hidden
+              >
+
+              <button
+                id="done<%= task.id %>"
+                class="task-icon"
+                type="submit"
+                hidden
+              >
+                ✓
+              </button>
+
+            </form>
+
+          </div>
+
+          <div class="task-actions">
+
+            <button
+              id="edit<%= task.id %>"
+              class="task-icon"
+              type="button"
+              onclick='editHandler("<%= task.id %>")'
+            >
+              ✎
+            </button>
+
+            <form
+              action="/tasks/<%= task.id %>/delete"
+              method="POST"
+            >
+
+              <input
+                type="hidden"
+                name="listId"
+                value="<%= list.id %>"
+              >
+
+              <button
+                class="task-icon delete-btn"
+                type="submit"
+              >
+                🗑
+              </button>
+
+            </form>
+
+          </div>
+
+        </div>
+
+      <% }) %>
+
+    </section>
+
+    <form
+      class="add-task-form"
+      action="/lists/<%= list.id %>/tasks"
+      method="POST"
+    >
+
+      <input
+        type="text"
+        name="title"
+        placeholder="Add a new task..."
+        class="task-input"
+      >
+
+      <button
+        type="submit"
+        class="add-task-btn"
+      >
+        +
+      </button>
+
+    </form>
+
+  </section>
+
+</main>
+
+<script>
+  function editHandler(id) {
+    document.getElementById("title" + id).hidden = true;
+    document.getElementById("edit" + id).hidden = true;
+
+    document.getElementById("input" + id).hidden = false;
+    document.getElementById("done" + id).hidden = false;
+
+    document.getElementById("input" + id).focus();
+  }
+
+  function editListHandler(id) {
+  document.getElementById("listTitle" + id).hidden = true;
+  document.getElementById("listEdit" + id).hidden = true;
+
+  document.getElementById("listInput" + id).hidden = false;
+  document.getElementById("listDone" + id).hidden = false;
+
+  document.getElementById("listInput" + id).focus();
+}
+</script>
+
+<%- include("partials/footer.ejs") %>

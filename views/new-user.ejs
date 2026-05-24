@@ -1,0 +1,65 @@
+<%- include("partials/header.ejs") %> <%- include("partials/sidebar.ejs") %>
+
+<main class="page-main new-user-page">
+  <section class="user-form-card">
+    <h1>Create a new grove</h1>
+
+    <p>Add a new user and choose an avatar.</p>
+    
+     <% if (locals.error) { %>
+     <p class="form-error"><%= error %></p>
+     <% } %>
+
+    <form action="/users" method="POST" class="user-form">
+      <label for="name">User name</label>
+
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Enter name..."
+        required
+      />
+
+      <label>Choose avatar</label>
+
+      <div class="avatar-options">
+        <label>
+          <input type="radio" name="avatarSeed" value="Willow" checked />
+          <img
+            src="https://api.dicebear.com/9.x/lorelei/svg?seed=Willow"
+            alt="Willow avatar"
+          />
+        </label>
+
+        <label>
+          <input type="radio" name="avatarSeed" value="Fern" />
+          <img
+            src="https://api.dicebear.com/9.x/lorelei/svg?seed=Fern"
+            alt="Fern avatar"
+          />
+        </label>
+
+        <label>
+          <input type="radio" name="avatarSeed" value="Moss" />
+          <img
+            src="https://api.dicebear.com/9.x/lorelei/svg?seed=Moss"
+            alt="Moss avatar"
+          />
+        </label>
+
+        <label>
+          <input type="radio" name="avatarSeed" value="Ivy" />
+          <img
+            src="https://api.dicebear.com/9.x/lorelei/svg?seed=Ivy"
+            alt="Ivy avatar"
+          />
+        </label>
+      </div>
+
+      <button type="submit" class="form-submit-btn">Create User</button>
+    </form>
+  </section>
+</main>
+
+<%- include("partials/footer.ejs") %>

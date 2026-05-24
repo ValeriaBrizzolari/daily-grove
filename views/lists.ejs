@@ -1,0 +1,78 @@
+<%- include("partials/header.ejs") %>
+
+<%- include("partials/sidebar.ejs") %>
+
+<main class="page-main lists-page">
+
+<header class="dashboard-header">
+  <div>
+    <h1><%= currentUser.name %>'s Grove</h1>
+    <p>Organise your lists, tasks, and daily plans.</p>
+  </div>
+</header>
+
+  <section class="list-grid">
+
+    <% lists.forEach((list) => { %>
+
+      <a href="/lists/<%= list.id %>" class="card list-card">
+
+  <form
+    action="/lists/<%= list.id %>/delete"
+    method="POST"
+    class="delete-list-form"
+    onsubmit="return confirm('Are you sure you want to delete this list?')"
+  >
+    <button
+      class="list-delete-btn"
+      type="submit"
+    >
+      🗑
+    </button>
+  </form>
+
+  <h2>
+    <%= list.name %>
+  </h2>
+
+  <p>
+    Open this list to manage your tasks.
+  </p>
+
+  <div class="list-meta">
+    <span>View Tasks</span>
+    <span>→</span>
+  </div>
+
+</a>
+
+    <% }) %>
+
+    <form
+  class="card list-card add-list-card"
+  action="/users/<%= currentUser.id %>/lists"
+  method="POST"
+>
+
+  <input
+    type="text"
+    name="name"
+    placeholder="+ Create New List"
+    class="new-list-input"
+    required
+  >
+
+  <button
+    type="submit"
+    class="create-list-btn"
+  >
+    +
+  </button>
+
+</form>
+
+  </section>
+
+</main>
+
+<%- include("partials/footer.ejs") %>

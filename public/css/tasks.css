@@ -1,0 +1,235 @@
+html {
+  overflow-y: scroll; /* scrollbar always present — prevents layout width shift */
+}
+
+body {
+  background-color: #efe3cf;
+  margin: 0;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(245, 234, 216, 0.45), rgba(245, 234, 216, 0.45)),
+    url("/assets/patterns/leaf-pattern.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.tasks-page {
+  min-height: 100vh;
+  padding: 7rem 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.tasks-card {
+  width: min(860px, 100%);
+  background-color: rgba(238, 232, 222, 0.85);
+  background-image:
+    linear-gradient(rgba(238, 232, 222, 0.849), rgba(245, 234, 216, 0.45)),
+    url("/assets/patterns/speckled-paper.png");
+  border-radius: 28px;
+  padding: 2.4rem 2.6rem 2.1rem;
+  box-shadow: 0 20px 45px rgba(78, 61, 39, 0.13);
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.tasks-header h1 {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #5c634f;
+}
+
+.tasks-title-line {
+  width: 100%;
+  height: 3px;
+  margin: 1.2rem 0 1.6rem;
+  background: #6f8c68;
+  border-radius: 999px;
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.task-row {
+  min-height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  border-bottom: 1px solid rgba(101, 88, 67, 0.16);
+}
+
+.task-left {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.task-circle {
+  width: 28px;
+  height: 28px;
+  border: 2px solid #94a487;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  display: block;
+}
+
+.task-row.completed .task-title {
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  color: #918b7c;
+  opacity: 0.75;
+}
+
+.task-row.completed .task-circle {
+  background: #6f8c68;
+  border-color: #6f8c68;
+}
+
+.task-title {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #34312c;
+}
+
+.task-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.task-icon {
+  border: none;
+  background: transparent;
+  color: #9a8f7d;
+  font-size: 1.2rem;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.delete-btn {
+  font-family: inherit;
+}
+
+.add-task-form {
+  margin-top: 1.8rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.task-input {
+  flex: 1;
+  height: 58px;
+  padding: 0 1.3rem;
+  border-radius: 16px;
+  border: 1px solid #d9cfc0;
+  background: rgba(255, 255, 255, 0.45);
+  font-size: 1rem;
+  color: #4a453d;
+  outline: none;
+}
+
+.task-input::placeholder {
+  color: #8b887f;
+}
+
+.add-task-btn {
+  width: 64px;
+  height: 64px;
+  border: none;
+  border-radius: 50%;
+  background: #6f8c68;
+  color: white;
+  font-size: 2.1rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(70, 90, 62, 0.22);
+}
+
+.add-task-btn:hover {
+  background: #5f7c59;
+}
+
+.complete-form,
+.edit-task-form {
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  display: flex;
+  align-items: center;
+}
+
+.edit-task-form {
+  gap: 0.7rem;
+}
+
+.edit-task-input {
+  border: 1px solid #d9cfc0;
+  border-radius: 12px;
+  padding: 0.6rem 0.8rem;
+  background: rgba(255, 255, 255, 0.55);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #34312c;
+  outline: none;
+}
+.list-title-edit-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.edit-list-form {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.edit-list-input {
+  border: 1px solid #d9cfc0;
+  border-radius: 12px;
+  padding: 0.45rem 0.8rem;
+  background: rgba(255, 255, 255, 0.55);
+
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #5c634f;
+
+  outline: none;
+}
+
+.list-edit-btn {
+  margin-top: 0.3rem;
+}
+@media (max-width: 800px) {
+  .tasks-page {
+    padding: 2rem 1rem;
+  }
+
+  .tasks-card {
+    padding: 2rem 1.4rem;
+  }
+
+  .task-actions {
+    gap: 0.8rem;
+  }
+}
