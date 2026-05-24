@@ -37,6 +37,35 @@ router.get("/users/new", async (req, res) => {
   });
 });
 
+router.get("/users/:id/edit", async (req, res) => {
+  const users = await getUsers();
+  const user = await getUserById(req.params.id);
+
+  res.render("new-user.ejs", {
+    users,
+    currentUser: user,
+    user,
+    pageStyle: "dashboard",
+    isEditing: true,
+  });
+});
+
+router.post("/users/:id/edit", async (req, res) => {
+  const userId = req.params.id;
+  const name = req.body.name;
+  const avatarSeed = req.body.avatarSeed;
+
+  const avatarUrl = `https://api.dicebear.com/9.x/lorelei/svg?seed=${avatarSeed}`;
+
+  await db.query("UPDATE users SET name = $1, avatar_url = $2 WHERE id = $3", [
+    name,
+    avatarUrl,
+    userId,
+  ]);
+
+  res.redirect(`/users/${userId}`);
+});
+
 router.get("/users/:id", async (req, res) => {
   const userId = req.params.id;
 

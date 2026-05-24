@@ -1,35 +1,59 @@
 <aside class="sidebar">
 
   <a href="/" class="logo">
-  Daily Grove
-</a>
+    Daily Grove
+  </a>
 
   <div class="sidebar-section">
-    <p class="sidebar-label">Your Groves</p>
+
+    <p class="sidebar-label">
+      Your Groves
+    </p>
 
     <% users.forEach((user) => { %>
 
-      <a
-        href="/users/<%= user.id %>"
-        class="user-link <%= currentUser && currentUser.id === user.id ? 'active' : '' %>"
-      >
+      <div class="user-item">
 
-        <img
-          class="avatar"
-          src="<%= user.avatar_url %>"
-          alt="<%= user.name %> avatar"
+        <a
+          href="/users/<%= user.id %>"
+          class="user-link <%= currentUser && currentUser.id === user.id ? 'active' : '' %>"
         >
 
-        <span><%= user.name %>'s Grove</span>
+          <img
+            class="avatar"
+            src="<%= user.avatar_url %>"
+            alt="<%= user.name %> avatar"
+          >
 
-      </a>
+          <span>
+            <%= user.name %>'s Grove
+          </span>
+
+        </a>
+
+        <a
+          href="/users/<%= user.id %>/edit"
+          class="edit-user-link"
+        >
+          ✎
+        </a>
+
+      </div>
 
     <% }) %>
 
-    <a href="/users/new" class="add-grove-card">
-  <span class="add-grove-icon">+</span>
-  <span>New Grove</span>
-</a>
   </div>
+
+  <a href="/users/new" class="add-grove-card">
+
+    <span class="add-grove-icon">
+      +
+    </span>
+
+    <span>
+      New Grove
+    </span>
+
+  </a>
 
 </aside>

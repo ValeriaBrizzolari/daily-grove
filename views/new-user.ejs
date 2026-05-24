@@ -1,65 +1,100 @@
 <%- include("partials/header.ejs") %> <%- include("partials/sidebar.ejs") %>
 
 <main class="page-main new-user-page">
+
   <section class="user-form-card">
-    <h1>Create a new grove</h1>
 
-    <p>Add a new user and choose an avatar.</p>
-    
-     <% if (locals.error) { %>
-     <p class="form-error"><%= error %></p>
-     <% } %>
+    <h1>
+      <%= locals.isEditing ? "Edit Your Grove" : "Create a New Grove" %>
+    </h1>
 
-    <form action="/users" method="POST" class="user-form">
-      <label for="name">User name</label>
+    <p>
+      <%= locals.isEditing
+        ? "Update your grove name and avatar."
+        : "Choose a name and a little companion for your grove." %>
+    </p>
+
+    <% if (locals.error) { %>
+      <p class="form-error">
+        <%= error %>
+      </p>
+    <% } %>
+
+    <form
+      action="<%= locals.isEditing ? `/users/${user.id}/edit` : '/users' %>"
+      method="POST"
+      class="user-form"
+    >
+
+      <label for="name">
+        Grove Name
+      </label>
 
       <input
         type="text"
         id="name"
         name="name"
-        placeholder="Enter name..."
+        placeholder="Enter a name..."
+        value="<%= locals.isEditing ? user.name : '' %>"
         required
-      />
+      >
 
-      <label>Choose avatar</label>
+      <label>
+        Choose an Avatar
+      </label>
 
       <div class="avatar-options">
-        <label>
-          <input type="radio" name="avatarSeed" value="Willow" checked />
-          <img
-            src="https://api.dicebear.com/9.x/lorelei/svg?seed=Willow"
-            alt="Willow avatar"
-          />
-        </label>
 
-        <label>
-          <input type="radio" name="avatarSeed" value="Fern" />
-          <img
-            src="https://api.dicebear.com/9.x/lorelei/svg?seed=Fern"
-            alt="Fern avatar"
-          />
-        </label>
+        <% const avatarSeeds = [
+          "Milo",
+          "Luna",
+          "Cleo",
+          "Willow",
+          "Jasper",
+          "Poppy",
+          "Nora",
+          "Theo"
+        ]; %>
 
-        <label>
-          <input type="radio" name="avatarSeed" value="Moss" />
-          <img
-            src="https://api.dicebear.com/9.x/lorelei/svg?seed=Moss"
-            alt="Moss avatar"
-          />
-        </label>
+        <% avatarSeeds.forEach((seed) => { %>
 
-        <label>
-          <input type="radio" name="avatarSeed" value="Ivy" />
-          <img
-            src="https://api.dicebear.com/9.x/lorelei/svg?seed=Ivy"
-            alt="Ivy avatar"
-          />
-        </label>
+          <label>
+
+            <input
+              type="radio"
+              name="avatarSeed"
+              value="<%= seed %>"
+
+              <%= locals.isEditing &&
+                  user.avatar_url.includes(`seed=${seed}`)
+                    ? "checked"
+                    : (!locals.isEditing && seed === "Milo")
+                    ? "checked"
+                    : ""
+              %>
+            >
+
+            <img
+              src="https://api.dicebear.com/9.x/lorelei/svg?seed=<%= seed %>"
+              alt="<%= seed %> avatar"
+            >
+
+          </label>
+
+        <% }) %>
+
       </div>
 
-      <button type="submit" class="form-submit-btn">Create User</button>
-    </form>
-  </section>
-</main>
+      <button
+        type="submit"
+        class="form-submit-btn"
+      >
+        <%= locals.isEditing ? "Save Changes" : "Create Grove" %>
+      </button>
 
+    </form>
+
+  </section>
+
+</main>
 <%- include("partials/footer.ejs") %>
