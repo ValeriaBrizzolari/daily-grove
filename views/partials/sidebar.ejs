@@ -31,12 +31,31 @@
 
         </a>
 
-        <a
-          href="/users/<%= user.id %>/edit"
-          class="edit-user-link"
-        >
-          ✎
-        </a>
+        <div class="user-actions">
+
+          <a
+            href="/users/<%= user.id %>/edit"
+            class="edit-user-link"
+          >
+            ✎
+          </a>
+
+          <form
+            action="/users/<%= user.id %>/delete"
+            method="POST"
+            onsubmit="return confirm('Are you sure you want to delete this grove? This will delete all its lists and tasks.')"
+          >
+
+            <button
+              type="submit"
+              class="delete-user-btn"
+            >
+              🗑
+            </button>
+
+          </form>
+
+        </div>
 
       </div>
 

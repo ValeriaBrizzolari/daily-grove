@@ -244,6 +244,33 @@ button {
   color: var(--sage-dark);
 }
 
+.user-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.delete-user-btn {
+  border: none;
+  background: transparent;
+  color: #9a8f7d;
+  font-size: 0.95rem;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.user-item:hover .delete-user-btn,
+.user-item:hover .edit-user-link {
+  opacity: 1;
+}
+
+.delete-user-btn:hover,
+.edit-user-link:hover {
+  color: var(--sage-dark);
+}
+
 @media (max-width: 900px) {
   .app-layout {
     display: flex;

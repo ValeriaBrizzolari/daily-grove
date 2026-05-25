@@ -107,4 +107,12 @@ router.post("/users", async (req, res) => {
   }
 });
 
+router.post("/users/:id/delete", async (req, res) => {
+  const userId = req.params.id;
+
+  await db.query("DELETE FROM users WHERE id = $1", [userId]);
+
+  res.redirect("/");
+});
+
 export default router;
