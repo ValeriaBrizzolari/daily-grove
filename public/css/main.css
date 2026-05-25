@@ -261,6 +261,27 @@ button {
 
     padding: 1rem;
     overflow-x: auto;
+
+    scrollbar-color: rgba(111, 140, 104, 0.55) rgba(255, 250, 241, 0.55);
+    scrollbar-width: thin;
+  }
+
+  .sidebar::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .sidebar::-webkit-scrollbar-track {
+    background: rgba(255, 250, 241, 0.55);
+    border-radius: 999px;
+  }
+
+  .sidebar::-webkit-scrollbar-thumb {
+    background: rgba(111, 140, 104, 0.55);
+    border-radius: 999px;
+  }
+
+  .sidebar::-webkit-scrollbar-thumb:hover {
+    background: rgba(83, 97, 69, 0.7);
   }
 
   .logo {
@@ -272,12 +293,18 @@ button {
   .sidebar-section {
     display: flex;
     align-items: center;
-    gap: 0.7rem;
+    gap: 0.9rem;
     margin: 0;
   }
 
   .sidebar-label {
     display: none;
+  }
+
+  .user-item {
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
   }
 
   .user-link {
@@ -289,9 +316,12 @@ button {
     display: none;
   }
 
-  .add-user {
-    white-space: nowrap;
+  .add-grove-card {
+    height: 58px;
+    margin-top: 0;
+    margin-left: 0;
     flex-shrink: 0;
+    align-self: center;
   }
 
   .page-main {

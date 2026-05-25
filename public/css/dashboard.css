@@ -112,37 +112,30 @@
 .quote-mark {
   display: block;
   text-align: center;
-  font-size: 4rem;
+  font-family: "Special Elite", monospace;
+  font-size: 1.8rem;
   line-height: 1;
   color: #738462;
-
-  font-family: Georgia, serif;
+  margin: 0 0 -0.3rem;
 }
 
 .quote-text {
-  font-family: "Parisienne", cursive;
-
-  font-size: clamp(2.4rem, 3vw, 4rem);
-
-  line-height: 1.4;
-
+  font-family: "Special Elite", monospace;
+  font-size: clamp(1.35rem, 2vw, 2rem);
+  line-height: 1.45;
   text-align: center;
-
   color: #43372c;
-
-  margin: 0;
-
+  margin: 0 auto;
+  max-width: 34ch;
   font-weight: 400;
 }
 
 .quote-author {
-  margin-top: 2rem;
+  margin-top: 1.8rem;
   text-align: center;
-  font-family: "Inter", sans-serif;
-  font-size: 1rem;
-  font-style: italic;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  font-family: "Special Elite", monospace;
+  font-size: 0.95rem;
+  font-weight: 400;
   color: #5f7051;
 }
 
@@ -453,5 +446,59 @@
 @media (max-width: 520px) {
   .list-grid {
     grid-template-columns: 1fr;
+  }
+
+  .home-hero {
+    padding: 40px 16px 60px;
+  }
+
+  .home-hero h1 {
+    font-size: 3.6rem;
+    line-height: 0.95;
+    margin-bottom: 2rem;
+  }
+
+  .quote-wrapper {
+    margin-top: 2rem;
+    width: 100%;
+  }
+
+  .quote-paper {
+    width: 94%;
+    max-width: 420px;
+    min-height: 260px;
+
+    padding: 2.4rem 1.6rem 2rem;
+
+    margin-inline: auto;
+  }
+
+  .quote-paper::before {
+    top: 10px;
+    left: 10px;
+  }
+
+  .quote-paper::after {
+    width: 96px;
+    height: 24px;
+    top: -10px;
+  }
+
+  .quote-mark {
+    font-size: 1.8rem;
+    margin: 0 0 -0.35rem;
+    line-height: 1;
+  }
+
+  .quote-text {
+    font-size: 1.15rem;
+    line-height: 1.55;
+
+    max-width: 100%;
+  }
+
+  .quote-author {
+    font-size: 0.8rem;
+    margin-top: 1.2rem;
   }
 }
